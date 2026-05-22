@@ -3,7 +3,9 @@ uvicorn
 python-multipart
 sqlalchemy
 ollama
+google-generativeai
 PyPDF2
 openai
 python-dotenv
 reportlab
+psycopg2-binary

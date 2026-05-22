@@ -29,7 +29,6 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-
 def get_db():
     db = SessionLocal()
     try:
@@ -47,7 +46,7 @@ def home():
 @app.post("/upload")
 async def upload_resume(
     file: UploadFile = File(...),
-    job_description: str = Form(""),
+    job_description: str | None = Form(""),
     provider: str = Form("ollama"),
     db: Session = Depends(get_db)
 ):
@@ -163,6 +162,8 @@ def get_result_detail(
         "suggestions": json.loads(item.suggestions),
         "created_at": item.created_at
     }
+
+
 @app.get("/results/{analysis_id}/pdf")
 def export_result_pdf(
     analysis_id: int,
