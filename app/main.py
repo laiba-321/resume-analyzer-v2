@@ -49,6 +49,7 @@ async def upload_resume(
     job_description: str | None = Form(""),
     provider: str = Form("ollama"),
     db: Session = Depends(get_db)
+    
 ):
     
     
@@ -107,6 +108,7 @@ async def upload_resume(
     db.refresh(new_analysis)
 
     return {
+    "analysis_id": new_analysis.id,
     "resume_skills": resume_skills,
     "job_skills": job_skills,
     "matched_skills": matched,

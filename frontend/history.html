@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>History - AI Resume Analyzer V2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="brand"><div class="logo">AI</div><div><h1>AI Resume Analyzer <span>V2</span></h1><p>Saved analysis reports</p></div></div>
+  <div class="nav"><a href="index.html">Home</a><a class="active" href="history.html">History</a><button id="refreshHistoryBtn">Refresh</button></div>
+</nav>
+<main class="page">
+  <section class="pageHead"><h2>Analysis History</h2><p>Open previous analyses and download PDF reports.</p></section>
+  <section id="historyList" class="historyList"><div class="card">Loading history...</div></section>
+</main>
+<div id="modal" class="modal"><div class="modalContent"><button id="closeModal" class="close">&times;</button><div id="modalBody"></div></div></div>
+<footer class="footer"><strong>AI Resume Analyzer V2</strong><span>History powered by FastAPI + PostgreSQL.</span></footer>
+<script src="app.js"></script>
+</body>
+</html>

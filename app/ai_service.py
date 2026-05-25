@@ -28,8 +28,8 @@ Return ONLY valid JSON. No markdown. No explanation outside JSON.
 Format:
 {{
   "score": 0,
-  "summary": "short summary",
-  "suggestions": ["point1", "point2"],
+  "summary": "3 line short summary",
+  "suggestions": ["point1", "point2","point3"],
   "skills": ["skill1", "skill2"]
 }}
 
@@ -75,8 +75,10 @@ def analyze_with_gemini(text: str) -> dict:
     if not GEMINI_API_KEY:
         raise ValueError("GEMINI_API_KEY is missing")
 
-    model = genai.GenerativeModel("gemini-2.0-flash")
-
+    model = genai.GenerativeModel("models/gemini-flash-latest")
+    
+    text = text[:3000]
+    
     response = model.generate_content(build_prompt(text))
 
     raw = response.text
