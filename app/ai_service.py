@@ -3,15 +3,15 @@ import os
 import re
 import google.generativeai as genai
 from dotenv import load_dotenv
-from openai import OpenAI
+#from openai import OpenAI
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+#OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 DEFAULT_PROVIDER = os.getenv("DEFAULT_LLM_PROVIDER", "gemini")
 
-client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
+#client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
@@ -58,17 +58,17 @@ def clean_json_response(raw: str) -> dict:
    # return clean_json_response(raw)
 
 
-def analyze_with_openai(text: str) -> dict:
-    if not client:
-        raise ValueError("OPENAI_API_KEY is missing")
+#def analyze_with_openai(text: str) -> dict:
+    #if not client:
+     #   raise ValueError("OPENAI_API_KEY is missing")
 
-    response = client.responses.create(
-        model="gpt-4.1-mini",
-        input=build_prompt(text)
-    )
+    #response = client.responses.create(
+     #   model="gpt-4.1-mini",
+     #   input=build_prompt(text)
+    #)
 
-    raw = response.output_text
-    return clean_json_response(raw)
+    #raw = response.output_text
+    #return clean_json_response(raw)
 
 
 def analyze_with_gemini(text: str) -> dict:
@@ -91,7 +91,7 @@ def analyze_resume_with_ai(text: str, provider: str | None = None) -> dict:
     if selected_provider == "gemini":
         return analyze_with_gemini(text)
 
-    if selected_provider == "openai":
+    #if selected_provider == "openai":
         return analyze_with_openai(text)
 
     #if selected_provider == "ollama":
