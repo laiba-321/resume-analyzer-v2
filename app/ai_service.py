@@ -1,8 +1,6 @@
 import json
 import os
 import re
-
-import ollama
 import google.generativeai as genai
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -11,7 +9,7 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-DEFAULT_PROVIDER = os.getenv("DEFAULT_LLM_PROVIDER", "ollama")
+DEFAULT_PROVIDER = os.getenv("DEFAULT_LLM_PROVIDER", "gemini")
 
 client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
@@ -48,14 +46,16 @@ def clean_json_response(raw: str) -> dict:
     return json.loads(cleaned)
 
 
-def analyze_with_ollama(text: str) -> dict:
-    response = ollama.chat(
-        model="gemma3:1b",
-        messages=[{"role": "user", "content": build_prompt(text)}]
-    )
+#def analyze_with_ollama(text: str) -> dict:
+  #  import ollama
 
-    raw = response["message"]["content"]
-    return clean_json_response(raw)
+   # response = ollama.chat(
+    #    model="gemma3:1b",
+     #   messages=[{"role": "user", "content": build_prompt(text)}]
+   # )
+
+   # raw = response["message"]["content"]
+   # return clean_json_response(raw)
 
 
 def analyze_with_openai(text: str) -> dict:
@@ -94,7 +94,7 @@ def analyze_resume_with_ai(text: str, provider: str | None = None) -> dict:
     if selected_provider == "openai":
         return analyze_with_openai(text)
 
-    if selected_provider == "ollama":
-        return analyze_with_ollama(text)
+    #if selected_provider == "ollama":
+        #return analyze_with_ollama(text)
 
     raise ValueError(f"Unsupported provider: {selected_provider}")
