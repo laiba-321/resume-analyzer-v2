@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000"; // Change to Render URL after deployment
+const API_BASE_URL = "https://resume-analyzer-v2-production.up.railway.app"; // Change to Render URL after deployment
 const UPLOAD_URL = `${API_BASE_URL}/upload`;
 const RESULTS_URL = `${API_BASE_URL}/results`;
 
